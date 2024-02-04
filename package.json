@@ -1,0 +1,25 @@
+{
+  "name": "shopping-site",
+  "version": "1.0.0",
+  "description": "Ecommerce API - NodeJS",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "NodeJS",
+    "API"
+  ],
+  "author": "Lu Yan",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
