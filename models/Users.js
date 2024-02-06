@@ -1,3 +1,5 @@
+//The data structure for users
+
 import mongoose from 'mongoose';
 // https://mongoosejs.com/docs/guide.html
 // Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
@@ -67,7 +69,6 @@ const UserSchema = new Schema({
 
 // User` is a "Model", a subclass of `mongoose.Model
 const User = mongoose.model("User", UserSchema);
-// then you can use a Model to create new documents. e.g.
-// const user1 = new User({fullName: "Sherlock Holms"});
+// then you can use a Model to create new documents. e.g. const user1 = new User({fullName: "Sherlock Holms"});
 
 export default User;
