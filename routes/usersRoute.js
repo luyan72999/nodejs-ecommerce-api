@@ -2,11 +2,13 @@
 // express router
 // the router for user registration
 import express from 'express';
-import {registerUser, loginUser} from '../controllers/usersController.js';
+import {registerUser, loginUser, getUserProfile} from '../controllers/usersController.js';
+import { isLoggedIn } from '../middlewares/isLoggedIn.js';
 
 const userRoutes = express.Router();
 
-userRoutes.post('/api/v1/users/register',registerUser);
-userRoutes.post('/api/v1/users/login',loginUser);
+userRoutes.post('/register',registerUser);
+userRoutes.post('/login',loginUser);
+userRoutes.get('/profile', isLoggedIn, getUserProfile); // pass the middleware isLoggedIn before the getUserProfile, to ensure only logged in user can use that endpoint to check user profile
 
 export default userRoutes;

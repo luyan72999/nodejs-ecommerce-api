@@ -1,6 +1,9 @@
 import User from '../models/Users.js';
 import bcrypt from 'bcryptjs';
 import expressAsyncHandler from 'express-async-handler';
+import { generateToken } from '../utils/generateToken.js';
+import { getTokenFromHeader } from '../utils/getTokenFromHeader.js';
+import { verifyToken } from '../utils/verifyToken.js';
 
 // function: user registration
 // endpoint: POST /api/v1/users/register
@@ -36,16 +39,17 @@ export const registerUser = expressAsyncHandler(async(req, res) => {
 // function: user login
 // endpoint: POST /api/v1/users/login
 // access: public
-
 export const loginUser = expressAsyncHandler(async(req, res) => {
   const {email, password} = req.body;
   // check if user exists
   const user = await User.findOne({email});
 
-  if (user && await bcrypt.compare(password, user.password)) {
+  if (user && await bcrypt.compare(password, user?.password)) {
     res.status(200).json({
       status: "sucess",
-      message: "Login succeeded"
+      message: "Login succeeded",
+      data: user,
+      token: generateToken(user?._id)
     });
   } else if (!user) {
     throw new Error("Login failed: user does not exist.");
@@ -53,4 +57,21 @@ export const loginUser = expressAsyncHandler(async(req, res) => {
     throw new Error("Login failed: invalid credentials.");
   }
 });
+
+// function: user login
+// endpoint: GET /api/v1/users/profile
+// access: private
+export const getUserProfile = expressAsyncHandler((async(req, res)=>{
+  // extract the token from request header
+  const token = getTokenFromHeader(req);
+  //send token to JWT server to verify the token
+  const decodedUser = verifyToken(token);
+  console.log(decodedUser);
+  console.log(req);``
+  res.json({
+    message: "get profile succeeded"
+  })
+}));
+
+
 

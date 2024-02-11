@@ -14,7 +14,7 @@ const app = express();
 // add express.json() to app as middleware
 app.use(express.json());
 // add routes to app as middlewares (a middleware can access req and res, and do some operations on them)
-app.use("/", userRoutes);
+app.use("/api/v1/users/", userRoutes);
 
 // the error handler middlewares pipeline
 app.use(urlNotFoundHandler);
