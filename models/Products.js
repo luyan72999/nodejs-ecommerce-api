@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 // https://mongoosejs.com/docs/guide.html
 // Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
 const Schema = mongoose.Schema; 
-// the UserSchema
+// the ProductSchema
 // note: user attribute means the creator of the product (admin user)
 const ProductSchema = new Schema({
   name: {

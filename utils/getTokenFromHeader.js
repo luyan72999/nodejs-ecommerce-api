@@ -4,7 +4,7 @@ export const getTokenFromHeader = (req)=>{
   const headerObj = req?.headers;
   const token = headerObj?.authorization?.split(" ")[1];
   // const token = headerObj?.authorization?.split[" "][1];
-  // note: use ?. to ensure the data exist before extracting to prevent errors, because in a request these data might be missing
+  // note: use ?. to ensure the data exist before extracting to prevent errors, because in a request the data might be missing
   if (token === undefined) {
     return "token does not exist";
   } else {
